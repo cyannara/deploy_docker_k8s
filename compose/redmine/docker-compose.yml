@@ -1,6 +1,3 @@
-# docker-compose.yml
-version: '3.8'
-
 services:
   redmine:
     image: redmine:5
@@ -39,5 +36,5 @@ services:
       [
         "--default-authentication-plugin=mysql_native_password",
         "--character-set-server=utf8mb4",
-        "--collation-server=utf8mb4_unicode_ci"
+        "--collation-server=utf8mb4_unicode_ci",
       ]

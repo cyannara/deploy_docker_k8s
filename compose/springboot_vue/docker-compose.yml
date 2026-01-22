@@ -1,0 +1,16 @@
+services:
+  backend:
+    #build: ./backend
+    image: cyannara/backend:latest
+    container_name: backend
+    ports:
+      - "8080:8080"
+
+  frontend:
+    #build: ./frontapp
+    image: cyannara/frontend:latest
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
