@@ -31,6 +31,20 @@ pipeline {
                     junit 'build/test-results/test/TEST-*.xml'
                 }
             }
-        }        
+        }    
+
+        stage('Staging Deploy') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'Staging-PrivateKey', keyFileVariable: 'KEYFILE', usernameVariable: 'USER')]) {
+                    bat """
+                        echo Fixing key permissions...
+                        icacls "%KEYFILE%" /inheritance:r
+                        icacls "%KEYFILE%" /grant:r "NT AUTHORITY\\SYSTEM:R"
+                        ssh -i "%KEYFILE%" -o StrictHostKeyChecking=no %USER%@54.237.147.247 "sh /home/ubuntu/startup.sh"
+                    """
+                }
+            }
+        }  
+
     }
 }
