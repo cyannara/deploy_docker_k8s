@@ -12,9 +12,9 @@ services:
       REDMINE_DB_PASSWORD: redmine
       REDMINE_DB_ENCODING: utf8mb4
     volumes:
-      - c:/data/redmine/files:/usr/src/redmine/files
-      - c:/data/redmine/plugins:/usr/src/redmine/plugins
-      - c:/data/redmine/themes:/usr/src/redmine/public/themes
+      - /data/redmine/files:/usr/src/redmine/files
+      - /data/redmine/plugins:/usr/src/redmine/plugins
+      - /data/redmine/themes:/usr/src/redmine/public/themes
     depends_on:
       - db
 
@@ -31,7 +31,7 @@ services:
       MYSQL_PASSWORD: redmine
       TZ: Asia/Seoul
     volumes:
-      - c:/data/mysql:/var/lib/mysql
+      - /data/mysql:/var/lib/mysql
     command:
       [
         "--default-authentication-plugin=mysql_native_password",
